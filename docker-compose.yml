@@ -1,0 +1,18 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: collab
+    volumes:
+      - ./database/data:/var/lib/postgresql/data
+      - ./database/scripts:/docker-entrypoint-initdb.d
+    networks:
+      - collab
+    command: postgres -c stats_temp_directory=/tmp
+
+networks:
+  collab:
+    
